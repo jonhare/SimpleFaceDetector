@@ -74,7 +74,36 @@ public class SimpleFaceDetector {
 							display.togglePause();
 						} else if (e.getKeyCode() == KeyEvent.VK_S) {
 							synchronized (display) {
-								final JFileChooser fc = new JFileChooser();
+								final JFileChooser fc = new JFileChooser() {
+									private static final long serialVersionUID = 1L;
+
+									@Override
+									public void approveSelection() {
+										final File f = getSelectedFile();
+										if (f.exists() && getDialogType() == SAVE_DIALOG) {
+											final Object[] options = { "Cancel", "Replace" };
+											final int result = JOptionPane
+													.showOptionDialog(
+															this,
+															"A file or folder with the same name already exists in the folder "
+																	+ f.getParentFile().getName()
+																	+ ". Replacing it will overwrite its current contents.",
+															"“" + f.getName()
+																	+ "” already exists. Do you want to replace it?",
+															JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+															null, options, options[0]);
+											switch (result) {
+											case 1:
+												super.approveSelection();
+												return;
+											case 0:
+												return;
+											}
+										}
+										super.approveSelection();
+									}
+								};
+
 								final FileNameExtensionFilter defaultFilter = new FileNameExtensionFilter("JPEG (.jpg)",
 										"jpg", "jpeg");
 
