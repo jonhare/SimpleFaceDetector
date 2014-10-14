@@ -2,13 +2,9 @@ package uk.ac.soton.ecs.jsh2.facedet;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,10 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileSystemManager;
-import org.apache.commons.vfs2.VFS;
-import org.openimaj.image.DisplayUtilities;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.colour.RGBColour;
@@ -29,6 +21,15 @@ import org.openimaj.video.VideoDisplay;
 import org.openimaj.video.VideoDisplayAdapter;
 import org.openimaj.video.capture.VideoCapture;
 
+/**
+ * Really simple face detection tool. Can be used in gui mode, in which case it
+ * opens a webcam, and performs face detection in real-time (allowing the user
+ * to save images). Additionally has a command-line mode for processing of
+ * previously captured images.
+ * 
+ * @author Jonathon Hare (jsh2@ecs.soton.ac.uk)
+ * 
+ */
 public class SimpleFaceDetector {
 	private HaarCascadeDetector detector;
 
@@ -47,6 +48,7 @@ public class SimpleFaceDetector {
 		// start the webcam gui
 		if (VideoCapture.getVideoDevices().size() == 0) {
 			JOptionPane.showMessageDialog(null, "No video capture devices found.");
+			System.exit(1);
 		} else {
 			try {
 				final VideoCapture vc = new VideoCapture(640, 480);
@@ -73,10 +75,14 @@ public class SimpleFaceDetector {
 						} else if (e.getKeyCode() == KeyEvent.VK_S) {
 							synchronized (display) {
 								final JFileChooser fc = new JFileChooser();
+								final FileNameExtensionFilter defaultFilter = new FileNameExtensionFilter("JPEG (.jpg)",
+										"jpg", "jpeg");
+
+								fc.addChoosableFileFilter(defaultFilter);
 								fc.addChoosableFileFilter(new FileNameExtensionFilter("PNG (.png)", "png"));
-								fc.addChoosableFileFilter(new FileNameExtensionFilter("JPEG (.jpg)", "jpg", "jpeg"));
-								fc.setSelectedFile(new File("image."
-										+ ((FileNameExtensionFilter) fc.getFileFilter()).getDefaultExtension()));
+
+								fc.setFileFilter(defaultFilter);
+								fc.setSelectedFile(new File("image." + defaultFilter.getDefaultExtension()));
 
 								if (fc.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
 									final File file = fc.getSelectedFile();
@@ -98,43 +104,29 @@ public class SimpleFaceDetector {
 			}
 		}
 	}
-	
-	private void cmdLineMode(String string, String string2) {
-		for (final String arg : args) {
+
+	private void cmdLineMode(String in, String out) {
+		try {
+			final File inf = new File(in);
+			final File outf = new File(out);
+
+			final InputStream is = null;
 			try {
-				final FileSystemManager fsManager = VFS.getManager();
-				final FileObject path = fsManager.resolveFile(arg);
+				final MBFImage image = ImageUtilities.readMBF(inf);
+				findAndDrawFaces(image);
 
-				final List<JFrame> frames = new ArrayList<JFrame>();
-
-				InputStream is = null;
-				try {
-					is = path.getContent().getInputStream();
-					final MBFImage image = ImageUtilities.readMBF(is);
-					sfd.findAndDrawFaces(image);
-					final JFrame frame = DisplayUtilities.displaySimple(image, path.getName().toString());
-					frames.add(frame);
-					frame.addWindowListener(new WindowAdapter() {
-						@Override
-						public void windowClosed(WindowEvent e) {
-							synchronized (frames) {
-								frames.remove(frame);
-
-								if (frames.isEmpty()) {
-									System.exit(0);
-								}
-							}
-						}
-					});
-				} finally {
-					if (is != null)
-						is.close();
+				if (!outf.getName().contains(".")) {
+					ImageUtilities.write(image, "jpeg", outf);
+				} else {
+					ImageUtilities.write(image, outf);
 				}
-			} catch (final IOException e) {
-				System.err.println("Error reading " + arg);
+			} finally {
+				if (is != null)
+					is.close();
 			}
+		} catch (final IOException e) {
+			System.err.println("Error: " + e);
 		}
-	}
 	}
 
 	public static void main(String[] args) {
@@ -144,6 +136,16 @@ public class SimpleFaceDetector {
 			sfd.liveMode();
 		} else if (args.length == 2) {
 			sfd.cmdLineMode(args[0], args[1]);
+		} else {
+			final String name = new File(SimpleFaceDetector.class.getProtectionDomain()
+					.getCodeSource().getLocation().getPath()).getName();
+
+			System.err.println("Webcam mode usage:");
+			System.err.println("java -jar " + name);
+			System.err.println();
+			System.err.println("Commandline mode usage:");
+			System.err.println("java -jar " + name + " <input_image> <output_image>");
+			System.err.println();
 		}
 	}
 }

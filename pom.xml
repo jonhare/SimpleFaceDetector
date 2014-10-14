@@ -57,6 +57,12 @@
       <artifactId>core-video-capture</artifactId>
       <version>${openimaj.version}</version>
       <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.android.tools</groupId>
+          <artifactId>dx</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <repositories>
@@ -99,6 +105,54 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <shadedClassifierName>tool</shadedClassifierName>
               <shadedArtifactId>SimpleFaceDetector</shadedArtifactId>
+              <filters>
+                <filter>
+                  <artifact>xpp3:xpp3_min</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>xmlpull:xmlpull</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_frontalface_alt_tree.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_frontalface_alt.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_frontalface_default.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_fullbody.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_lowerbody.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_profileface.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/haarcascade_upperbody.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/skin-histogram-16-6.bin</exclude>
+                    <exclude>org/openimaj/image/processing/face/detection/skin.png</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_eye_tree_eyeglasses.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_eye.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_frontalface_alt_tree.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_frontalface_alt.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_frontalface_default.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_fullbody.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_lefteye_2splits.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_lowerbody.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_eyepair_big.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_eyepair_small.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_lefteye.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_mouth.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_nose.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_righteye.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_mcs_upperbody.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_profileface.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_righteye_2splits.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/haarcascade_upperbody.xml</exclude>
+                    <exclude>org/openimaj/image/objectdetection/haar/lbpcascade_frontalface.xml</exclude>
+                    <exclude>**/pom.xml</exclude>
+                  </excludes>
+                </filter>
+              </filters>
             </configuration>
           </execution>
         </executions>
