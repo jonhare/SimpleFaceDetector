@@ -90,7 +90,7 @@ public class SimpleFaceDetector {
 																	+ ". Replacing it will overwrite its current contents.",
 															"“" + f.getName()
 																	+ "” already exists. Do you want to replace it?",
-															JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+															JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
 															null, options, options[0]);
 											switch (result) {
 											case 1:
