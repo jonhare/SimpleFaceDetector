@@ -18,7 +18,7 @@ The SimpleFaceDetector tool also contains a command-line mode that allows it to 
 
 	java -jar SimpleFaceDetector-1.0-tool.jar <input_image> <output_image>
 
-For example, to detect faces in the `faces.jpg` file and save the result to `faces-detections.jpg` one would run: 
+For example, to detect faces in the [faces.jpg](faces.jpg) file and save the result to [faces-detections.jpg](faces-detections.jpg) one would run: 
 
 	java -jar SimpleFaceDetector-1.0-tool.jar faces.jpg faces-detections.jpg
 
