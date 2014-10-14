@@ -24,7 +24,7 @@ For example, to detect faces in the `faces.jpg` file and save the result to `fac
 
 The original and resultant images are shown below:
 
-<div>
+<div style="text-align:center">
 	<img src="faces.jpg"/>
 	<img src="faces-detections.jpg"/>
 </div>
