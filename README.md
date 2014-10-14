@@ -4,10 +4,10 @@ SimpleFaceDetector
 A simple face detection tool for the COMP6223 coursework.
 
 ##Running the detector
-SimpleFaceDetector is a Java application. You need to have Java 1.6 or greater installed to use it. Java can be downloaded and installed from the Oracle Java SE downloads page: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+SimpleFaceDetector is a Java application. You need to have Java 1.6 or greater installed to use it. Java can be downloaded and installed from the [Oracle Java SE downloads page](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
 ##Running with a webcam
-If you have a webcam, the SimpleFaceDetector can use it to capture images and highlight detected faces. You should be able to just double click on the SimpleFaceDetector-1.0-tool.jar file to launch it. Alternatively, it can be launched from a command prompt with the following command: 
+If you have a webcam, the SimpleFaceDetector can use it to capture images and highlight detected faces. You should be able to just double click on the `SimpleFaceDetector-1.0-tool.jar` file to launch it. Alternatively, it can be launched from a command prompt with the following command: 
 	
 	java -jar SimpleFaceDetector-1.0-tool.jar
 
