@@ -22,3 +22,9 @@ For example, to detect faces in the `faces.jpg` file and save the result to `fac
 
 	java -jar SimpleFaceDetector-1.0-tool.jar faces.jpg faces-detections.jpg
 
+The original and resultant images are shown below:
+
+<div>
+	<img src="faces.jpg"/>
+	<img src="faces-detections.jpg"/>
+</div>

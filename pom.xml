@@ -113,6 +113,24 @@
                   </includes>
                 </filter>
                 <filter>
+                  <artifact>com.twelvemonkeys.imageio:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>javax.media:jai-core</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>com.sun.media:jai-codec</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
                   <artifact>xmlpull:xmlpull</artifact>
                   <includes>
                     <include>**</include>
