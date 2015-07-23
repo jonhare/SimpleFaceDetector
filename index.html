@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<style type="text/css">
+			body {
+				margin-left:auto; 
+				margin-right: auto; 
+				width: 800px;
+				font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+			}
+
+			h1{
+				padding-bottom:0.3em;
+				font-size:2.25em;
+				line-height:1.2;
+				border-bottom:1px solid #eee
+			}
+
+			h2{
+				padding-bottom:0.3em;
+				font-size:1.75em;
+				line-height:1.225;
+				border-bottom:1px solid #eee
+			}
+			.btn {
+			  background: #3498db;
+			  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+			  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+			  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+			  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+			  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+			  -webkit-border-radius: 28;
+			  -moz-border-radius: 28;
+			  border-radius: 28px;
+			  font-family: Arial;
+			  color: #ffffff;
+			  font-size: 46px;
+			  padding: 10px 20px 10px 20px;
+			  text-decoration: none;
+			}
+
+			.btn:hover {
+			  background: #3cb0fd;
+			  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+			  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+			  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+			  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+			  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+			  text-decoration: none;
+			}
+			#download {
+				margin-left:auto; 
+				margin-right: auto; 
+				display: block;
+				width: 10em;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="https://github.com/jonhare/SimpleFaceDetector"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+		<article>
+			<h1>A Simple Face Detector</h1>
+
+			<p>A simple tool for learning about face detection.</p>
+
+			<div style="width: 100%">
+				<br/>
+				<br/>
+				<a href="facedetector.jar" id="download" class="btn">Download</a>
+				<br/>
+				<br/>
+			</div>
+
+			<h2>Running the detector</h2>
+
+			<p>SimpleFaceDetector is a Java application. You need to have Java 1.6 or greater installed to use it. Java can be downloaded and installed from the <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle Java SE downloads page</a>.</p>
+
+			<h2>Running with a webcam</h2>
+
+			<p>If you have a webcam, the Simple Face Detector can use it to capture images and highlight detected faces. You should be able to just double click on the <code>facedetector.jar</code> file to launch it. Alternatively, it can be launched from a command prompt with the following command: </p>
+
+			<pre><code>java -jar facedetector.jar</code></pre>
+
+			<p>When the tool launches, it will connect to the first webcam it sees and display the image. A red box will be drawn around any detected faces. Pressing the space bar will pause the video, and pressing again will unpause it. Pressing the <code>s</code> key will allow you to save the current image to a file.</p>
+
+			<h2>Using your own images</h2>
+
+			<p>The face detector tool also contains a command-line mode that allows it to read an image, detect faces and save the result. To do this, the following command can be used from a command prompt:</p>
+
+			<pre><code>java -jar facedetector.jar &lt;input_image&gt; &lt;output_image&gt;</code></pre>
+
+			<p>For example, to detect faces in the <a href="faces.jpg">faces.jpg</a> file and save the result to <a href="faces-detections.jpg">faces-detections.jpg</a> one would run: </p>
+
+			<pre><code>java -jar facedetector.jar faces.jpg faces-detections.jpg</code></pre>
+
+			<p>The original and resultant images are shown below:</p>
+
+			<div align="center">
+			    <img src="faces.jpg" style="max-width:100%;">
+			    <img src="faces-detections.jpg" style="max-width:100%;">
+			</div>
+		</article>
+	</body>
+</html>

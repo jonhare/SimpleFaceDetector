@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp codebase="http://facedetect.me/" spec="1.0+">
+	<information>
+		<title>Face Detect</title>
+		<vendor>University of Southampton</vendor>
+		<homepage href="https%3A%2F%2Fgithub.com%2Fjonhare%2FSimpleFaceDetector"/>
+		<description>Face detection example</description>
+		<offline-allowed/>
+	</information>
+	<security>
+		<all-permissions/>
+	</security>
+	<resources>
+		<j2se version="1.5+"/>
+		<jar href="facedetector.jar" main="true"/>
+	</resources>
+	<application-desc main-class="uk.ac.soton.ecs.jsh2.facedet.SimpleFaceDetector">
+	</application-desc>
+</jnlp>
